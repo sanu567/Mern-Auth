@@ -20,9 +20,8 @@ const Login = () => {
     const onSubmitHandler= async(e)=>{
       try {
         e.preventDefault();
-        axios.defaults.withCredentials=true;
         if(state==='Sing up'){
-         const{data}= await axios.post(backendUrl+'/api/auth/register',{name,email,password})
+         const{data}= await axios.post(backendUrl+'/api/auth/register',{name,email,password},{ withCredentials: true } )
 
          if(data.success){
           setIsloggedin(true);
@@ -34,7 +33,7 @@ const Login = () => {
          }
         }
         else{
-          const {data}= await axios.post(backendUrl+'/api/auth/login',{email,password})
+          const {data}= await axios.post(backendUrl+'/api/auth/login',{email,password},{ withCredentials: true } )
           if(data.success){
             setIsloggedin(true);
              getUserData();
